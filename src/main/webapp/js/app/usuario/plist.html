@@ -5,20 +5,6 @@
             <div class="d-flex justify-content-between flex-wrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Usuarios</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
-
-
-
-
-                    <button type="button" class="btn btn-primary" data-toggle="modal" ng-click="openModal()">
-                        Launch modal
-                    </button>
-
-
-
-
-                    <button type="button" class="btn btn-light" ng-click="resetOrder()">
-                        <i class="fa fa-eye"></i>
-                    </button>
                     <div class="btn-group" style="width:400px;">
                         <p class="mt-2" style="width:200px;">Selecciona RPP: </p>
                         <select class="form-control" 
@@ -30,6 +16,10 @@
                             <option value="50">50</option>
                         </select>
                     </div>
+              
+                    <button type="button" class="btn btn-light  ml-3" ng-click="resetOrder()">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
                 </div>
             </div>
             <!--            <div class="row">
@@ -53,28 +43,31 @@
                 <div class="col-6">
                     <nav aria-label="paginacion">
                         <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" ng-show="page > 2" href="usuario/plist/{{rpp}}/1/{{order}}/{{align}}">First</a>
+                           <li class="page-item">
+                                <a class="page-link" ng-show="page > 2" href="{{ob}}/plist/{{rpp}}/1/{{order}}/{{align}}">First</a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link" ng-show="page > 1" href="usuario/plist/{{rpp}}/{{page - 1}}/{{order}}/{{align}}">Previous</a>
+                                <a class="page-link" ng-show="page > 1" href="{{ob}}/plist/{{rpp}}/{{page - 1}}/{{order}}/{{align}}">Previous</a>
                             </li>
                             <li class="page-item" ng-class="{'active':(p == page), 'disabled': p === '...'}" ng-repeat="p in list2 track by $index">
-                                <a class="page-link" href="usuario/plist/{{rpp}}/{{p}}/{{order}}/{{align}}">{{p}}</a>
+                                <a class="page-link" href="{{ob}}/plist/{{rpp}}/{{p}}/{{order}}/{{align}}">{{p}}</a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link" ng-show="page != totalPages" href="usuario/plist/{{rpp}}/{{page--1}}/{{order}}/{{align}}">Next</a>
+                                <a class="page-link" ng-show="page != totalPages" href="{{ob}}/plist/{{rpp}}/{{page--1}}/{{order}}/{{align}}">Next</a>
                             </li>
                             <li class="page-item">
-                                <a class="page-link" ng-show="page != totalPages - 1 && page != totalPages" href="usuario/plist/{{rpp}}/{{totalPages}}/{{order}}/{{align}}">Last</a>
+                                <a class="page-link" ng-show="page != totalPages-1 && page != totalPages" href="{{ob}}/plist/{{rpp}}/{{totalPages}}/{{order}}/{{align}}">Last</a>
                             </li>
                         </ul>
                     </nav>
                 </div>
+                <div class="col-6 new">
+                   <a href="{{ob}}/new/" class="btn btn-outline-secondary btn-sm active float-right" role="button" aria-pressed="true">Crear nuevo usuario</a>
+ 
+                </div>
             </div>
 
-
-
+  
 
 
             <div class="table-responsive">
@@ -144,6 +137,8 @@
                                 <i class="fas fa-long-arrow-alt-down"></i>
                             </button>
                         </th>
+                        <th>                         
+                        </th>
                     </tr>
                     <tr ng-repeat="fila in ajaxDataUsuarios">
                         <td>{{fila.id}}</td>
@@ -152,7 +147,16 @@
                         <td>{{fila.ape1}}</td>
                         <td>{{fila.ape2}}</td>
                         <td>{{fila.login}}</td>
-                        <td>{{fila.id_tipoUsuario}}</td>
+                        <td><a class="page-link" href="tipousuario/view/{{fila.obj_tipoUsuario.id}}">{{fila.obj_tipoUsuario.desc}}</a></td>
+                        <td><button type="button" class="btn btn-light" ng-click="view(fila.id)">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                        <button type="button" class="btn btn-light " ng-click="edit(fila.id)">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                        <button type="button" class="btn btn-light" ng-click="remove(fila.id)">
+                        <i class="fas fa-trash-alt"></i>
+                    </button></td>
                     </tr>
                 </table>
 
@@ -160,9 +164,4 @@
         </main>
     </div>
 </div>
-
-
-
-
-
 <footer class="footer" ng-include="'js/app/footer.html'"></footer>

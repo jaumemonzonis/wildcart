@@ -1,30 +1,43 @@
 <header ng-include="'js/app/header.html'"></header>
 <div class="container-fluid">
-    <div class="row">      
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-12 px-4" style="margin-top: 50px">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h2">Edición de Tipos de usuario</h1>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <div class="btn-group mr-2">
-                        <button class="btn btn-sm btn-outline-secondary">Share</button>
-                        <button class="btn btn-sm btn-outline-secondary">Export</button>
-                    </div>
-                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                        <span data-feather="calendar"></span>
-                        This week
-                    </button>
-                </div>
-            </div>            
+  <div class="row" style="margin-top: 70px">
+    <div class="col-12">
+      <div class="row mt-5">
+        <div class="col-3 mx-auto">
+         <h3 class="text-center mb-3">Editar Tipo de Usuario</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3 mx-auto">
+               <div class="alert alert-success" role="alert" ng-show="(visualizar)">
+                Tipo de Usuario modificado correctamente.
+            </div>
+          <form name="userForm" ng-show="(!visualizar)">
+            <div class="form-group">
+              <label>ID</label>
+              <input type="text" class="form-control" id="id" name="id" ng-disabled="true" ng-model="id" />
+            </div>
            
-            
-            
-            
-            
-            
-            
-            
-            
-        </main>
+            <div class="form-group">
+              <label>Descripción</label>
+              <input type="text" class="form-control" id="desc" name="desc" ng-model="desc" ng-required="true" />
+              <div ng-show="!userForm.desc.$valid" class="alert alert-danger" role="alert">
+                Descripción obligatoria
+              </div>
+            </div>
+   
+            <button ng-click="update()" type="button" class="btn btn-primary btn-block" ng-disabled="userForm.$invalid">Modificar usuario</button>
+         
+          </form> 
+             <div class="alert alert-success" role="alert" ng-show="(error)">
+                Error al editar Tipo de Usuario.
+            </div>
+            <button type="button" class="btn btn-primary btn-block mt-2" ng-click="volver()">Volver</button>
+
+          
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 <footer class="footer" ng-include="'js/app/footer.html'"></footer>

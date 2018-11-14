@@ -9,7 +9,8 @@ var trolleyes = angular.module('MyApp', [
     'usuarioControllers',
     'tipoproductoControllers',
     'facturaControllers',
-    'productoControllers'
+    'productoControllers',
+    'lineaControllers'
 ]);
 
 
@@ -21,3 +22,5 @@ var moduleUsuario = angular.module ('usuarioControllers',[]);
 var moduleProducto = angular.module ('productoControllers',[]);
 var moduleFactura = angular.module ('facturaControllers',[]);
 var moduleTipoproducto = angular.module('tipoproductoControllers',[]);
+var moduleLinea = angular.module('lineaControllers',[]);
+

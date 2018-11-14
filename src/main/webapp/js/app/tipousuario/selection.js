@@ -52,7 +52,7 @@ moduleTipousuario.controller('tipousuarioSelectionController', ['$scope', '$http
         //getcount
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob='+$scope.ob+'&op=getcount'
+            url: 'http://localhost:8081/json?ob='+$scope.ob+'&op=getcount'
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuariosNumber = response.data.message;
@@ -69,7 +69,7 @@ moduleTipousuario.controller('tipousuarioSelectionController', ['$scope', '$http
 
         $http({
             method: 'GET',
-            url: 'http://localhost:8081/trolleyes/json?ob='+$scope.ob+'&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
+            url: 'http://localhost:8081/json?ob='+$scope.ob+'&op=getpage&rpp=' + $scope.rpp + '&page=' + $scope.page + $scope.orderURLServidor
         }).then(function (response) {
             $scope.status = response.status;
             $scope.ajaxDataUsuarios = response.data.message;
@@ -111,7 +111,9 @@ moduleTipousuario.controller('tipousuarioSelectionController', ['$scope', '$http
 
         $scope.isActive = toolService.isActive;
 
-
+  $scope.openModal = function () {
+           
+        }
 
     }
 

@@ -24,7 +24,6 @@ trolleyes.run(['$rootScope', 'sessionService', '$location', '$http',
                 if (nextUrl != '/' && nextUrl != '/home' && nextUrl != '/login') {
                     $location.path("/");
                 }
-
             });
 
 

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 
 import com.google.gson.annotations.Expose;
+import net.daw.helper.EncodingHelper;
 
 public class TipousuarioBean {
 	@Expose
@@ -31,5 +32,24 @@ public class TipousuarioBean {
 		this.setId(oResultSet.getInt("id"));
 		this.setDesc(oResultSet.getString("desc"));
 		return this;
+	}
+        public String getColumns() {
+		String strColumns="";
+		strColumns += "`id`,";		
+		strColumns += "`desc`";		
+		return strColumns;				
+	}
+        public String getValues() {
+		String strColumns="";
+		strColumns += "null,";
+		strColumns += EncodingHelper.quotate(desc);		
+		return strColumns;				
+	}
+        
+        public String getPairs() {
+		String strPairs="";
+		strPairs += "id=" + id + ",";
+		strPairs += "desc=" + desc;
+		return strPairs;	
 	}
 }

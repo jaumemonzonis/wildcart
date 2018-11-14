@@ -1,11 +1,16 @@
 'use strict'
 
+//http://localhost:8081/json?ob=usuario&op=login&user=rigo&pass=B221D9DBB083A7F33428D7C2A3C3198AE925614D70210E28716CCAA7CD4DDB79
+//http://localhost:8081/json?ob=usuario&op=check
+//http://localhost:8081/json?ob=usuario&op=logout
+
+//http://localhost:8081/json?ob=usuario&op=login&user=ddd&pass=d74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1
+
+
 moduleTipousuario.controller('tipousuarioPlistController', ['$scope', '$http', '$location', 'toolService', '$routeParams',
     function ($scope, $http, $location, toolService, $routeParams) {
         
         $scope.ob="tipousuario";
-        
-        
         $scope.totalPages = 1;
 
         if (!$routeParams.order) {
@@ -34,9 +39,19 @@ moduleTipousuario.controller('tipousuarioPlistController', ['$scope', '$http', '
 
 
         $scope.resetOrder = function () {
-            $location.url($scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page);
+            $location.url($scope.ob +`/plist/` + $scope.rpp + `/` + $scope.page);
+        }
+        $scope.view = function (id) {
+            $location.url($scope.ob +`/view/${id}`);
         }
 
+        $scope.remove= function (id) {
+            $location.url($scope.ob +`/remove/${id}`);
+        }
+
+        $scope.edit= function (id) {
+            $location.url($scope.ob +`/edit/${id}`);
+        }
 
         $scope.ordena = function (order, align) {
             if ($scope.orderURLServidor == "") {
@@ -46,7 +61,7 @@ moduleTipousuario.controller('tipousuarioPlistController', ['$scope', '$http', '
                 $scope.orderURLServidor = $scope.orderURLServidor + "-" + order + "," + align;
                 $scope.orderURLCliente = $scope.orderURLCliente + "-" + order + "," + align;
             }
-            $location.url($scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + `/` + $scope.orderURLCliente);
+            $location.url($scope.ob +`/plist/` + $scope.rpp + `/` + $scope.page + `/` + $scope.orderURLCliente);
         }
 
         //getcount
@@ -81,7 +96,7 @@ moduleTipousuario.controller('tipousuarioPlistController', ['$scope', '$http', '
 
 
         $scope.update = function () {
-            $location.url($scope.ob + `/plist/` + $scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
+            $location.url($scope.ob +`/plist/` + $scope.rpp + `/` + $scope.page + '/' + $scope.orderURLCliente);
         }
 
 
@@ -106,7 +121,9 @@ moduleTipousuario.controller('tipousuarioPlistController', ['$scope', '$http', '
             }
         }
 
-
+        $scope.openModal = function () {
+           
+        }
 
 
         $scope.isActive = toolService.isActive;
